@@ -1,0 +1,8 @@
+[user]
+	name =
+	email =
+
+[alias]
+	sync = !sh -c \"git fetch upstream && git checkout master && git merge upstream/master && git push origin master\" -
+	k = "kubectl --context dev"
+	kp= "kubectl --context prod"
