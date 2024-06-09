@@ -34,6 +34,11 @@ autoload -U compinit && compinit
 
 zinit cdreplay -q
 
+# Load Oh My Posh
+if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
+  eval "$(oh-my-posh init zsh --config $HOME/.ohmyposh.toml)"
+fi
+
 # Keybindings
 bindkey -e
 bindkey '^p' history-search-backward
