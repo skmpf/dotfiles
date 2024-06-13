@@ -70,7 +70,7 @@ Zoxide is a command line file manager that allows you to quickly navigate and op
 ```bash
 brew install zoxide
 <!-- or -->
-sudo apt-get install zoxide
+curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 ```
 
 ### fzf
