@@ -13,6 +13,7 @@
 [core]
 	editor = cursor --wait
 	excludesfile = ~/.gitignore
+	autocrlf = input
 [diff]
 	algorithm = histogram
 	colorMoved = plain
