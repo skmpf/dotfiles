@@ -3,15 +3,15 @@
 [user]
 	# This is Git's per-user configuration file.
 	# These values are set in ~/.gitconfig_* files.
-	name =
-	email =
+	name = Sebastien Kempf
+	email = 56154464+skmpf@users.noreply.github.com
 
 [includeIf "gitdir:~/work/"]
 	path = ~/.gitconfig_pro
 
 [core]
-	editor = vim
-	
+	editor = cursor --wait
+
 	# Line endings. Must be double quotes here to avoid error.
 	autocrlf = input
 
@@ -35,7 +35,7 @@
 	# This is setup to happen when running fetch/pull, to avoid having to run it
 	# manually as "git remote prune origin".
 	prune = true
-	
+
 [init]
 	# Set branch for git init. GitHub uses main but git uses master unless you override here.
 	defaultBranch = main
