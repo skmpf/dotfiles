@@ -1,38 +1,43 @@
-# Content for global ~/.gitconfig file
-
+# See https://blog.gitbutler.com/how-git-core-devs-configure-git/
 [user]
-	# This is Git's per-user configuration file.
-	# These values are set in ~/.gitconfig_* files.
 	name = Sebastien Kempf
 	email = 56154464+skmpf@users.noreply.github.com
-
+[alias]
+	l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[branch]
+	sort = -committerdate
+[column]
+	ui = auto
+[commit]
+	verbose = true
 [core]
 	editor = cursor --wait
-
-	# Line endings. Must be double quotes here to avoid error.
-	autocrlf = input
-
-[alias]
-	# --graph:
-	#     Draw a text-based graphical representation of the commit history on
-	#     the left hand side of the output.
-	# --decorate:
-	#     Print out the ref names of any commits that are shown. Defaults to
-	#     short optionm such that the name prefixes refs/heads/, refs/tags/ and
-	#     refs/remotes/ will not be printed.
-	lga = "log --graph --decorate --oneline --all"
-
-[pull]
-	# New versions of git tell you to set this explicitly. Here is the default behavior. This means
-	# "git pull" does nothing more than that. You can always run "git pull --rebase" when you need to.
-	rebase = true
-
+	excludesfile = ~/.gitignore
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
 [fetch]
-	# Deleted local references to remote branches which have been deleted.
-	# This is setup to happen when running fetch/pull, to avoid having to run it
-	# manually as "git remote prune origin".
 	prune = true
-
+	pruneTags = true
+	all = true
+[help]
+	autocorrect = prompt
 [init]
-	# Set branch for git init. GitHub uses main but git uses master unless you override here.
 	defaultBranch = main
+[pull]
+	rebase = true
+[push]
+	default = simple
+	autoSetupRemote = true
+	followTags = true
+[rerere]
+	enabled = true
+	autoupdate = true
+[rebase]
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
+[tag]
+	sort = version:refname
