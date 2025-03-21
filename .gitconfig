@@ -6,9 +6,6 @@
 	name = Sebastien Kempf
 	email = 56154464+skmpf@users.noreply.github.com
 
-[includeIf "gitdir:~/work/"]
-	path = ~/.gitconfig_pro
-
 [core]
 	editor = cursor --wait
 
