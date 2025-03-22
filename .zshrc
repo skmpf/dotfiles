@@ -4,6 +4,11 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
+# Load Homebrew
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 # Load plugins
 zinit light Aloxaf/fzf-tab
 zinit light MichaelAquilina/zsh-you-should-use
