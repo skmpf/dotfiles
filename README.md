@@ -35,6 +35,8 @@ cd .dotfiles
 
 Update name and email in `.gitconfig`. You can also change the default editor if you don't like `vim` (use `code --wait` for VSCode).
 
+> _Optional:_ update the directories you want to override in `.gitconfig` and update name and email in `.gitconfig_work`.
+
 Finally use GNU Stow to create symlinks
 
 ```

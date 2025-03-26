@@ -60,6 +60,25 @@ alias c='clear'
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
+# Git upstream branch syncer.
+# Usage: gsync master (checks out master, pull upstream, push origin).
+function gsync() {
+ if [[ ! "$1" ]] ; then
+     echo "You must supply a branch."
+     return 0
+ fi
+
+ BRANCHES=$(git branch --list $1)
+ if [ ! "$BRANCHES" ] ; then
+    echo "Branch $1 does not exist."
+    return 0
+ fi
+
+ git checkout "$1" && \
+ git pull upstream "$1" && \
+ git push origin "$1"
+}
+
 # Tell Homebrew to not autoupdate every single time I run it (just once a week).
 export HOMEBREW_AUTO_UPDATE_SECS=604800
 

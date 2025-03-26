@@ -2,6 +2,8 @@
 [user]
 	name = Sebastien Kempf
 	email = 56154464+skmpf@users.noreply.github.com
+[includeIf "gitdir:~/work/"]
+	path = ~/.gitconfig_work
 [alias]
 	l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [branch]
