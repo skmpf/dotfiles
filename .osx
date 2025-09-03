@@ -257,8 +257,14 @@ defaults write com.apple.LaunchServices "LSQuarantine" -bool "false"
 # defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 
 ###############################################################################
-# Spotlight                                                                   #
+# Siri, Spotlight                                                             #
 ###############################################################################
+
+# Disable Siri
+defaults write com.apple.Siri SiriPrefStashedStatusMenuVisible -bool false
+defaults write com.apple.Siri VoiceTriggerUserEnabled -bool false
+defaults write com.apple.Siri StatusMenuVisible -bool false
+defaults write com.apple.assistant.support "Assistant Enabled" -bool false
 
 if [[ "$RUN_AS_ROOT" = true ]]; then
   # Disable Spotlight indexing for any volume that gets mounted and has not yet

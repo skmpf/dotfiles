@@ -87,3 +87,22 @@ export NVM_DIR="$HOME/.nvm"
 eval "$(fzf --zsh)"
 eval "$(oh-my-posh init zsh --config $HOME/.ohmyposh.toml)"
 eval "$(zoxide init --cmd cd zsh)"
+
+# pnpm
+export PNPM_HOME="/Users/seb/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+. "$HOME/.local/bin/env"
+
+# Claudebox shortcuts
+sandbox() {
+  local claudebox_dir="/Users/seb/dev/claudebox"
+  (cd "$claudebox_dir" && docker-compose exec claudebox bash "$@")
+}
+claudebox() {
+  local claudebox_dir="/Users/seb/dev/claudebox"
+  (cd "$claudebox_dir" && docker-compose exec claudebox claude "$@")
+}

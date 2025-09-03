@@ -13,7 +13,7 @@
 [commit]
 	verbose = true
 [core]
-	editor = cursor --wait
+	editor = code --wait
 	excludesfile = ~/.gitignore
 	autocrlf = input
 [diff]
