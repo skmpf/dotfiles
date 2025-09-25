@@ -1,11 +1,18 @@
+# OS Detection
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    IS_MAC=true
+else
+    IS_MAC=false
+fi
+
 # Load Zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Load Homebrew
-if [[ "$OSTYPE" == "darwin"* ]]; then
+# Load Homebrew (macOS only)
+if [[ "$IS_MAC" == true ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
@@ -23,7 +30,6 @@ zinit snippet OMZP::sudo
 
 # Load completions
 autoload -U compinit && compinit
-
 zinit cdreplay -q
 
 # Keybindings
@@ -56,53 +62,56 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 alias ls='ls --color'
 alias c='clear'
 
-# Git upstream branch syncer.
-# Usage: gsync master (checks out master, pull upstream, push origin).
+# Git upstream branch syncer
+# Usage: gsync master (checks out master, pull upstream, push origin)
 function gsync() {
  if [[ ! "$1" ]] ; then
      echo "You must supply a branch."
      return 0
  fi
-
  BRANCHES=$(git branch --list $1)
  if [ ! "$BRANCHES" ] ; then
     echo "Branch $1 does not exist."
     return 0
  fi
-
  git checkout "$1" && \
  git pull upstream "$1" && \
  git push origin "$1"
 }
 
-# Tell Homebrew to not autoupdate every single time I run it (just once a week).
-export HOMEBREW_AUTO_UPDATE_SECS=604800
+# Homebrew auto-update (macOS only)
+if [[ "$IS_MAC" == true ]]; then
+  export HOMEBREW_AUTO_UPDATE_SECS=604800
+fi
 
 # Load nvm
 export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+if [[ "$IS_MAC" == true ]]; then
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+else
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+fi
 
 # Shell integrations
-eval "$(fzf --zsh)"
-eval "$(oh-my-posh init zsh --config $HOME/.ohmyposh.toml)"
-eval "$(zoxide init --cmd cd zsh)"
+if command -v fzf &> /dev/null; then
+  eval "$(fzf --zsh)"
+fi
+
+if [[ -f "$HOME/.ohmyposh.toml" ]] && command -v oh-my-posh &> /dev/null; then
+  eval "$(oh-my-posh init zsh --config $HOME/.ohmyposh.toml)"
+fi
+
+if command -v zoxide &> /dev/null; then
+  eval "$(zoxide init --cmd cd zsh)"
+fi
 
 # pnpm
-export PNPM_HOME="/Users/seb/Library/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-. "$HOME/.local/bin/env"
-
-# Claudebox shortcuts
-sandbox() {
-  local claudebox_dir="/Users/seb/dev/claudebox"
-  (cd "$claudebox_dir" && docker-compose exec claudebox bash "$@")
-}
-claudebox() {
-  local claudebox_dir="/Users/seb/dev/claudebox"
-  (cd "$claudebox_dir" && docker-compose exec claudebox claude "$@")
-}
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
