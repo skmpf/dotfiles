@@ -32,15 +32,25 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
       fetch_status = true
 
 [[blocks]]
-  type = 'rprompt'
-  overflow = 'hidden'
+  type = 'prompt'
+  alignment = 'right'
+
+  [[blocks.segments]]
+    type = 'session'
+    style = 'plain'
+    foreground = 'p:grey'
+    background = 'transparent'
+    template = '{{ .HostName }}'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
 
   [[blocks.segments]]
     type = 'executiontime'
     style = 'plain'
     foreground = 'yellow'
     background = 'transparent'
-    template = '{{ .FormattedMs }}'
+    template = ' {{ .FormattedMs }}'
 
     [blocks.segments.properties]
       cache_duration = 'none'

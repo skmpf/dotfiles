@@ -94,18 +94,20 @@ else
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 fi
 
+export export PATH=$PATH:$HOME/.local/bin
+
 # Shell integrations
-if command -v fzf &> /dev/null; then
-  eval "$(fzf --zsh)"
+# Source fzf key bindings and completion
+if [[ "$IS_MAC" == true ]]; then
+  # macOS with Homebrew
+  source <(fzf --zsh)
+else
+  # Linux - use the setup that comes with package installation
+  source /usr/share/fzf/key-bindings.zsh 2>/dev/null
+  source /usr/share/fzf/completion.zsh 2>/dev/null
 fi
-
-if [[ -f "$HOME/.ohmyposh.toml" ]] && command -v oh-my-posh &> /dev/null; then
-  eval "$(oh-my-posh init zsh --config $HOME/.ohmyposh.toml)"
-fi
-
-if command -v zoxide &> /dev/null; then
-  eval "$(zoxide init --cmd cd zsh)"
-fi
+eval "$(oh-my-posh init zsh --config $HOME/.ohmyposh.toml)"
+eval "$(zoxide init --cmd cd zsh)"
 
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
@@ -113,5 +115,3 @@ case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-
-[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
