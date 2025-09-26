@@ -1,4 +1,4 @@
-# My dotfiles
+  # My dotfiles
 
 This directory contains my personal dotfiles.
 
@@ -80,7 +80,7 @@ fzf is a command line fuzzy finder that allows you to quickly find files and dir
 ```bash
 brew install fzf
 <!-- or -->
-sudo apt-get install fzf
+sudo apt install fzf
 ```
 
 Finally, source the `.zshrc` file
