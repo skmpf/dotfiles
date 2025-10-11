@@ -90,7 +90,3 @@ source ~/.zshrc
 ```
 
 > Source: https://youtu.be/ud7YxC33Z3w
-
-### Claude
-
-> Source: https://github.com/citypaul/.dotfiles
