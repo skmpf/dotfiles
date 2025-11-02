@@ -125,8 +125,6 @@ esac
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-test -e "$HOME/.shellfishrc" && source "$HOME/.shellfishrc"
-
 alias claude-zai='
   ANTHROPIC_BASE_URL="https://api.z.ai/api/anthropic"\
   ANTHROPIC_AUTH_TOKEN="$(cat ~/.claude/api-keys/zai)"\
