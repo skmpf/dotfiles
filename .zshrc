@@ -107,7 +107,9 @@ else
   source /usr/share/fzf/completion.zsh 2>/dev/null
 fi
 eval "$(oh-my-posh init zsh --config $HOME/.ohmyposh.toml)"
-eval "$(zoxide init --cmd cd zsh)"
+if [[ "$CLAUDECODE" != "1" ]]; then
+    eval "$(zoxide init --cmd cd zsh)"
+fi
 
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
@@ -124,6 +126,7 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 test -e "$HOME/.shellfishrc" && source "$HOME/.shellfishrc"
+
 alias claude-zai='
   ANTHROPIC_BASE_URL="https://api.z.ai/api/anthropic"\
   ANTHROPIC_AUTH_TOKEN="$(cat ~/.claude/api-keys/zai)"\

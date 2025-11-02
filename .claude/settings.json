@@ -1,10 +1,17 @@
 {
   "permissions": {
     "allow": [
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
+      "Bash(bun:*)",
+      "Bash(node:*)",
+      "Bash(npm:*)",
+      "Bash(npx:*)",
+      "Bash(pnpm:*)",
       "mcp__context7__resolve-library-id",
       "mcp__context7__get-library-docs"
     ],
-    "deny": ["Bash(git:*)", "Read(./.env)", "Read(./.env.*)"],
+    "deny": ["Read(./.env)", "Read(./.env.*)"],
     "ask": []
   },
   "hooks": {
