@@ -1,4 +1,8 @@
 {
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "permissions": {
     "allow": [
       "Bash(ls:*)",
@@ -35,6 +39,5 @@
         ]
       }
     ]
-  },
-  "alwaysThinkingEnabled": true
+  }
 }
