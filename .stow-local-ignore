@@ -1,5 +1,8 @@
 .git
-README.md
+^README\.md$
 LICENCE
 
 .osx
+.DS_Store
+
+\.claude/api-keys/(?!README\.md$|\.gitignore$).\*
