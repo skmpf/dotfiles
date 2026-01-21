@@ -5,6 +5,7 @@
   },
   "permissions": {
     "allow": [
+      "Bash(git commit:*)",
       "Bash(ls:*)",
       "Bash(mkdir:*)",
       "Bash(bun:*)",
@@ -15,9 +16,13 @@
       "mcp__context7__resolve-library-id",
       "mcp__context7__get-library-docs"
     ],
-    "deny": ["Read(./.env)", "Read(./.env.*)"],
+    "deny": [
+      "Bash(git push:*)",
+      "Read(./.env)",
+      "Read(./.env.*)"
+    ],
     "ask": []
-  },
+    },
   "hooks": {
     "Notification": [
       {
