@@ -133,3 +133,5 @@ claude-zai() {
   ANTHROPIC_DEFAULT_HAIKU_MODEL="GLM-4.5-Air" \
   claude "$@"
 }
+# opencode
+export PATH=/Users/seb/.opencode/bin:$PATH
