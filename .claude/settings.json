@@ -14,15 +14,12 @@
       "Bash(npx:*)",
       "Bash(pnpm:*)",
       "mcp__context7__resolve-library-id",
-      "mcp__context7__get-library-docs"
+      "mcp__context7__get-library-docs",
+      "mcp__context7__query-docs"
     ],
-    "deny": [
-      "Bash(git push:*)",
-      "Read(./.env)",
-      "Read(./.env.*)"
-    ],
+    "deny": ["Bash(git push:*)", "Read(./.env)", "Read(./.env.*)"],
     "ask": []
-    },
+  },
   "hooks": {
     "Notification": [
       {
