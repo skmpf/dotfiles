@@ -111,27 +111,5 @@ if [[ "$CLAUDECODE" != "1" ]]; then
     eval "$(zoxide init --cmd cd zsh)"
 fi
 
-# pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
-# bun completions
-[ -s "/home/user/.bun/_bun" ] && source "/home/user/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-claude-zai() {
-  ANTHROPIC_BASE_URL="https://api.z.ai/api/anthropic" \
-  ANTHROPIC_AUTH_TOKEN="$(cat ~/.claude/api-keys/zai)" \
-  ANTHROPIC_DEFAULT_OPUS_MODEL="GLM-4.7" \
-  ANTHROPIC_DEFAULT_SONNET_MODEL="GLM-4.7" \
-  ANTHROPIC_DEFAULT_HAIKU_MODEL="GLM-4.5-Air" \
-  claude "$@"
-}
 # opencode
 export PATH=/Users/seb/.opencode/bin:$PATH
