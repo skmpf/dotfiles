@@ -111,17 +111,5 @@ if [[ "$CLAUDECODE" != "1" ]]; then
     eval "$(zoxide init --cmd cd zsh)"
 fi
 
-snd() {
-  local message="$1"
-  local recipient="${SND_RECIPIENT:+$SND_RECIPIENT}"
-
-  if [[ -z "$recipient" ]]; then
-    echo "Error: SND_RECIPIENT not set in ~/.zprofile"
-    return 1
-  fi
-
-  osascript -e "tell application \"Messages\" to send \"$message\" to buddy \"$recipient\""
-}
-
 # opencode
 export PATH=/Users/seb/.opencode/bin:$PATH
