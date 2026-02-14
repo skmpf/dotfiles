@@ -1,0 +1,47 @@
+# ===== ENVIRONMENT =====
+export EDITOR=vim
+
+# ===== ESSENTIAL ALIASES =====
+
+# Navigation (modern replacements with eza)
+alias ls='eza'
+alias ll='eza -lah'
+alias la='eza -a'
+alias lt='eza --tree --level=2'
+alias l='eza -lh'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# Git (saves tons of typing)
+alias g='git'
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit -m'
+alias gp='git push'
+alias gf='git fetch -ap'
+alias gpl='git pull'
+alias gl='git l'
+alias gd='git diff'
+alias gb='git branch'
+alias gco='git checkout'
+
+# Safety nets (prevent disasters)
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias mkdir='mkdir -pv'
+
+# Quick edits
+alias aliases='$EDITOR ~/.aliases && source ~/.zshrc'
+alias zshrc='$EDITOR ~/.zshrc && source ~/.zshrc'
+alias reload='source ~/.zshrc'
+
+# System
+alias h='history'
+alias j='jobs'
+alias ports='lsof -i -P -n | grep LISTEN'
+
+# Misc
+alias c='clear'
+alias path='echo -e ${PATH//:/\\n}'

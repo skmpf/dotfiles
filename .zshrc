@@ -23,11 +23,6 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-syntax-highlighting
 
-# Load snippets
-zinit snippet OMZP::common-aliases
-zinit snippet OMZP::git
-zinit snippet OMZP::sudo
-
 # Load completions
 autoload -U compinit && compinit
 zinit cdreplay -q
@@ -58,13 +53,12 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-# Aliases
-alias ls='ls --color'
-alias c='clear'
+# Load aliases
+[[ -f ~/.aliases ]] && source ~/.aliases
 
 # Git upstream branch syncer
 # Usage: gsync master (checks out master, pull upstream, push origin)
-function gsync() {
+gsync() {
  if [[ ! "$1" ]] ; then
      echo "You must supply a branch."
      return 0
