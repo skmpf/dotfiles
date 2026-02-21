@@ -116,3 +116,6 @@ claude-zai() {
 
 # opencode
 export PATH=/Users/seb/.opencode/bin:$PATH
+
+# OpenClaw Completion
+source "/Users/seb/.openclaw/completions/openclaw.zsh"

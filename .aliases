@@ -45,3 +45,5 @@ alias ports='lsof -i -P -n | grep LISTEN'
 # Misc
 alias c='clear'
 alias path='echo -e ${PATH//:/\\n}'
+alias oc='openclaw'
+alias ocg='openclaw gateway'
