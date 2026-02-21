@@ -1,4 +1,4 @@
-  # My dotfiles
+# My dotfiles
 
 This directory contains my personal dotfiles.
 
@@ -41,6 +41,7 @@ Finally use GNU Stow to create symlinks
 
 ```
 stow .
+stow opencode
 ```
 
 > Source: https://youtu.be/y6XCebnB9gs
