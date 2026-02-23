@@ -105,15 +105,6 @@ if [[ "$CLAUDECODE" != "1" ]]; then
     eval "$(zoxide init --cmd cd zsh)"
 fi
 
-claude-zai() {
-  ANTHROPIC_BASE_URL="https://api.z.ai/api/anthropic" \
-  ANTHROPIC_AUTH_TOKEN="$(cat ~/.claude/api-keys/zai)" \
-  ANTHROPIC_DEFAULT_OPUS_MODEL="GLM-5" \
-  ANTHROPIC_DEFAULT_SONNET_MODEL="GLM-5" \
-  ANTHROPIC_DEFAULT_HAIKU_MODEL="GLM-4.5-Air" \
-  claude "$@"
-}
-
 # opencode
 export PATH=/Users/seb/.opencode/bin:$PATH
 
