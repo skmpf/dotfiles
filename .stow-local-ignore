@@ -4,6 +4,3 @@ LICENCE
 
 .osx
 .DS_Store
-
-\.claude/api-keys/(?!README\.md$|\.gitignore$).*
-opencode
