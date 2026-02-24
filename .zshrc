@@ -78,16 +78,6 @@ if [[ "$IS_MAC" == true ]]; then
   export HOMEBREW_AUTO_UPDATE_SECS=604800
 fi
 
-# Load nvm
-export NVM_DIR="$HOME/.nvm"
-if [[ "$IS_MAC" == true ]]; then
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
-else
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-fi
-
 export export PATH=$PATH:$HOME/.local/bin
 
 # Shell integrations
@@ -110,3 +100,5 @@ export PATH=/Users/seb/.opencode/bin:$PATH
 
 # OpenClaw Completion
 source "/Users/seb/.openclaw/completions/openclaw.zsh"
+
+export PATH=$PATH:$HOME/.maestro/bin
