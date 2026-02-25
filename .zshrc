@@ -35,7 +35,7 @@ bindkey '^[w' kill-region
 
 # History
 HISTSIZE=5000
-HISTFILE=~/.zsh_history
+HISTFILE=$HOME/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
 setopt appendhistory
@@ -54,7 +54,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Load aliases
-[[ -f ~/.aliases ]] && source ~/.aliases
+[[ -f $HOME/.aliases ]] && source $HOME/.aliases
 
 # Git upstream branch syncer
 # Usage: gsync master (checks out master, pull upstream, push origin)
@@ -96,9 +96,10 @@ if [[ "$CLAUDECODE" != "1" ]]; then
 fi
 
 # opencode
-export PATH=/Users/seb/.opencode/bin:$PATH
+export OPENCODE_CONFIG_DIR=$HOME/.agents/
+export PATH=$HOME/.opencode/bin:$PATH
 
 # OpenClaw Completion
-source "/Users/seb/.openclaw/completions/openclaw.zsh"
+source "$HOME/.openclaw/completions/openclaw.zsh"
 
 export PATH=$PATH:$HOME/.maestro/bin
