@@ -95,6 +95,9 @@ if [[ "$CLAUDECODE" != "1" ]]; then
     eval "$(zoxide init --cmd cd zsh)"
 fi
 
+# Shellfish mobile shell integration
+test -e "$HOME/.shellfishrc" && source "$HOME/.shellfishrc"
+
 # opencode
 export OPENCODE_CONFIG_DIR=$HOME/.agents/
 export PATH=$HOME/.opencode/bin:$PATH

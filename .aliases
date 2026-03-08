@@ -47,6 +47,9 @@ alias c='clear'
 alias path='echo -e ${PATH//:/\\n}'
 alias oc='openclaw'
 alias ocg='openclaw gateway'
+alias ocgs='openclaw gateway status'
+alias ocgr='openclaw gateway restart'
+alias ocd='openclaw doctor --fix'
 
 # Bitwarden session helper (writes key where agent expects it)
 alias bwsession='export BW_SESSION="$(bw unlock --raw)" && printf "%s" "$BW_SESSION" > /tmp/bw_session && chmod 600 /tmp/bw_session && echo "BW session saved: /tmp/bw_session"'
