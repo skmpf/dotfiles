@@ -78,7 +78,7 @@ if [[ "$IS_MAC" == true ]]; then
   export HOMEBREW_AUTO_UPDATE_SECS=604800
 fi
 
-export export PATH=$PATH:$HOME/.local/bin
+export PATH="$PATH:$HOME/.local/bin"
 
 # Shell integrations
 # Source fzf key bindings and completion
@@ -91,11 +91,7 @@ else
   source /usr/share/fzf/completion.zsh 2>/dev/null
 fi
 eval "$(oh-my-posh init zsh --config $HOME/.ohmyposh.toml)"
-if [[ "$CLAUDECODE" != "1" ]]; then
-    eval "$(zoxide init --cmd cd zsh)"
-fi
 
-# Shellfish mobile shell integration
 test -e "$HOME/.shellfishrc" && source "$HOME/.shellfishrc"
 
 # OpenClaw Completion
