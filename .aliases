@@ -52,7 +52,7 @@ alias ocgr='openclaw gateway restart'
 alias occv='openclaw config validate'
 alias ocd='openclaw doctor --fix'
 alias ocsf='openclaw security audit --deep'
-alias gdoj="git -C ~/.openclaw show HEAD:openclaw.json | jq -S . > /tmp/openclaw-head.json && jq -S . ~/.openclaw/openclaw.json > /tmp/openclaw-worktree.json && diff --color=always -u /tmp/openclaw-head.json /tmp/openclaw-worktree.json"
+alias ocgd="git -C ~/.openclaw show HEAD:openclaw.json | jq -S . > /tmp/openclaw-head.json && jq -S . ~/.openclaw/openclaw.json > /tmp/openclaw-worktree.json && diff --color=always -u /tmp/openclaw-head.json /tmp/openclaw-worktree.json"
 
 # Bitwarden session helper (writes key where agent expects it)
 alias bwsession='export BW_SESSION="$(bw unlock --raw)" && printf "%s" "$BW_SESSION" > /tmp/bw_session && chmod 600 /tmp/bw_session && echo "BW session saved: /tmp/bw_session"'
