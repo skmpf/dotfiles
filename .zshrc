@@ -98,11 +98,5 @@ fi
 # Shellfish mobile shell integration
 test -e "$HOME/.shellfishrc" && source "$HOME/.shellfishrc"
 
-# opencode
-export OPENCODE_CONFIG_DIR=$HOME/.agents/
-export PATH=$HOME/.opencode/bin:$PATH
-
 # OpenClaw Completion
 source "$HOME/.openclaw/completions/openclaw.zsh"
-
-export PATH=$PATH:$HOME/.maestro/bin

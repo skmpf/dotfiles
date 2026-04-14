@@ -3,17 +3,17 @@ export EDITOR=vim
 
 # ===== ESSENTIAL ALIASES =====
 
-# Navigation (modern replacements with eza)
-alias ls='eza'
-alias ll='eza -lah'
-alias la='eza -a'
-alias lt='eza --tree --level=2'
-alias l='eza -lh'
+# Navigation
+alias ls='ls -G'
+alias ll='ls -lah'
+alias la='ls -a'
+alias lt='ls -lhR'
+alias l='ls -lh'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-# Git (saves tons of typing)
+# Git
 alias g='git'
 alias gs='git status'
 alias ga='git add'
@@ -26,7 +26,7 @@ alias gd='git diff'
 alias gb='git branch'
 alias gco='git checkout'
 
-# Safety nets (prevent disasters)
+# Safety nets
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
