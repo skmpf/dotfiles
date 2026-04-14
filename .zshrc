@@ -95,4 +95,4 @@ eval "$(oh-my-posh init zsh --config $HOME/.ohmyposh.toml)"
 test -e "$HOME/.shellfishrc" && source "$HOME/.shellfishrc"
 
 # OpenClaw Completion
-source "$HOME/.openclaw/completions/openclaw.zsh"
+[[ -f $HOME/.openclaw/completions/openclaw.zsh ]] && source $HOME/.openclaw/completions/openclaw.zsh
