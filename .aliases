@@ -7,7 +7,6 @@ export EDITOR=vim
 alias ls='ls -G'
 alias ll='ls -lah'
 alias la='ls -a'
-alias lt='ls -lhR'
 alias l='ls -lh'
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -51,7 +50,6 @@ alias ocgs='openclaw gateway status'
 alias ocgr='openclaw gateway restart'
 alias occv='openclaw config validate'
 alias ocd='openclaw doctor --fix'
-alias ocsf='openclaw security audit --deep'
 alias ocgd="git -C ~/.openclaw show HEAD:openclaw.json | jq -S . > /tmp/openclaw-head.json && jq -S . ~/.openclaw/openclaw.json > /tmp/openclaw-worktree.json && diff --color=always -u /tmp/openclaw-head.json /tmp/openclaw-worktree.json"
 
 # Bitwarden session helper (writes key where agent expects it)
