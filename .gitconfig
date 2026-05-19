@@ -6,6 +6,9 @@
 	path = ~/.gitconfig_work
 [alias]
 	l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	ri = rebase -i
+	ricode = !GIT_EDITOR='code --wait' git rebase -i
+	riabort = rebase --abort
 [branch]
 	sort = -committerdate
 [column]
@@ -13,7 +16,7 @@
 [commit]
 	verbose = true
 [core]
-	editor = code --wait
+	editor = vim
 	excludesfile = ~/.gitignore
 	autocrlf = input
 [diff]
@@ -29,6 +32,8 @@
 	autocorrect = prompt
 [init]
 	defaultBranch = main
+[merge]
+	conflictstyle = zdiff3
 [pull]
 	rebase = true
 [push]
