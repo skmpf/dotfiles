@@ -78,8 +78,6 @@ if [[ "$IS_MAC" == true ]]; then
   export HOMEBREW_AUTO_UPDATE_SECS=604800
 fi
 
-export PATH="$PATH:$HOME/.local/bin"
-
 # Shell integrations
 # Source fzf key bindings and completion
 if [[ "$IS_MAC" == true ]]; then
@@ -97,9 +95,17 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export PATH=$PATH:$HOME/.maestro/bin
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$HOME/.maestro/bin:$PATH"
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 test -e "$HOME/.shellfishrc" && source "$HOME/.shellfishrc"
 
 # OpenClaw Completion
 [[ -f $HOME/.openclaw/completions/openclaw.zsh ]] && source $HOME/.openclaw/completions/openclaw.zsh
+
+# Ollama models on external SSD
+export OLLAMA_MODELS="/Volumes/External SSD/ollama/models"
