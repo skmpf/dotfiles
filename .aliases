@@ -4,9 +4,11 @@ export EDITOR=vim
 # ===== ESSENTIAL ALIASES =====
 
 # Navigation
-alias ll='ls -lah'
+alias ls='eza --group-directories-first --icons'
+alias l='ls -l'
+alias ll='ls -la --git'
 alias la='ls -a'
-alias l='ls -lh'
+alias lt='ls --tree --level=2'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -43,13 +45,3 @@ alias ports='lsof -i -P -n | grep LISTEN'
 # Misc
 alias c='clear'
 alias path='echo -e ${PATH//:/\\n}'
-alias oc='openclaw'
-alias ocg='openclaw gateway'
-alias ocgs='openclaw gateway status'
-alias ocgr='openclaw gateway restart'
-alias occv='openclaw config validate'
-alias ocd='openclaw doctor --fix'
-alias ocgd="git -C ~/.openclaw show HEAD:openclaw.json | jq -S . > /tmp/openclaw-head.json && jq -S . ~/.openclaw/openclaw.json > /tmp/openclaw-worktree.json && diff --color=always -u /tmp/openclaw-head.json /tmp/openclaw-worktree.json"
-
-# Bitwarden session helper (writes key where agent expects it)
-alias bwsession='export BW_SESSION="$(bw unlock --raw)" && printf "%s" "$BW_SESSION" > /tmp/bw_session && chmod 600 /tmp/bw_session && echo "BW session saved: /tmp/bw_session"'
