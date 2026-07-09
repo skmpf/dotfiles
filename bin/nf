@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+load_telegram_env() {
+  [[ -n "${TELEGRAM_BOT_TOKEN:-}" && -n "${TELEGRAM_CHAT_ID:-}" ]] && return 0
+
+  local root=""
+  if command -v git >/dev/null 2>&1; then
+    root="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+  fi
+
+  local script_dir
+  script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || script_dir=""
+
+  local candidates=("$PWD/.env")
+  [[ -n "$root" ]] && candidates+=("$root/.env")
+  [[ -n "$script_dir" ]] && candidates+=("$script_dir/../.env")
+
+  local file
+  for file in "${candidates[@]}"; do
+    [[ -f "$file" ]] || continue
+    set -a
+    # shellcheck disable=SC1090
+    source "$file" >/dev/null 2>&1 || true
+    set +a
+    [[ -n "${TELEGRAM_BOT_TOKEN:-}" && -n "${TELEGRAM_CHAT_ID:-}" ]] && return 0
+  done
+
+  return 1
+}
+
+text="${1-}"
+[[ -z "$text" ]] && exit 0
+
+load_telegram_env || exit 0
+
+url="https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage"
+if [[ -n "${TELEGRAM_THREAD_ID:-}" ]]; then
+  curl -sS --max-time 12 "$url" \
+    -d "chat_id=${TELEGRAM_CHAT_ID}" \
+    -d "message_thread_id=${TELEGRAM_THREAD_ID}" \
+    --data-urlencode "text=${text}" >/dev/null
+else
+  curl -sS --max-time 12 "$url" \
+    -d "chat_id=${TELEGRAM_CHAT_ID}" \
+    --data-urlencode "text=${text}" >/dev/null
+fi

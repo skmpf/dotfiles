@@ -91,13 +91,12 @@ fi
 eval "$(oh-my-posh init zsh --config $HOME/.ohmyposh.toml)"
 eval "$(zoxide init zsh --cmd cd)"
 
+export PATH="$HOME/.dotfiles/bin:$PATH"
+
 # OPTIONAL
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/bash_completion.sh" ] && \. "/opt/homebrew/opt/nvm/bash_completion.sh"  # This loads nvm bash_completion
-
-export PATH="$PATH:$HOME/.local/bin"
-export PATH="$HOME/.maestro/bin:$PATH"
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator

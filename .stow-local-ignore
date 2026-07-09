@@ -3,3 +3,5 @@
 LICENCE
 
 .DS_Store
+^\.env$
+^\.example\.env$
