@@ -92,6 +92,7 @@ eval "$(oh-my-posh init zsh --config $HOME/.ohmyposh.toml)"
 eval "$(zoxide init zsh --cmd cd)"
 
 export PATH="$HOME/.dotfiles/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # OPTIONAL
 export NVM_DIR="$HOME/.nvm"
@@ -99,10 +100,13 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/bash_completion.sh" ] && \. "/opt/homebrew/opt/nvm/bash_completion.sh"  # This loads nvm bash_completion
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
+export ANDROID_SDK_ROOT=$ANDROID_HOME
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+export JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
+export PATH="$JAVA_HOME/bin:$PATH"
 
 test -e "$HOME/.shellfishrc" && source "$HOME/.shellfishrc"
 
 # Added by LM Studio CLI tool (lms)
-export PATH="$PATH:/Users/skempf/.lmstudio/bin"
+export PATH="$PATH:$HOME/.lmstudio/bin"
