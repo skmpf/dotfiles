@@ -1,5 +1,8 @@
 .env
 *.DS_Store
 
-# pi subagents
+# worktrees
+.worktrees/
+
+# agents
 .pi-subagents/

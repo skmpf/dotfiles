@@ -26,6 +26,54 @@ alias gd='git diff'
 alias gb='git branch'
 alias gco='git checkout'
 
+# Git worktree helpers
+# gwt <name> [origin-branch]  - create .worktrees/<name> on new branch <name>, cd into it
+gwt() {
+  [ -z "$1" ] && { echo "Usage: gwt <name> [origin-branch]"; return 1; }
+  local root; root=$(git worktree list --porcelain 2>/dev/null | awk 'NR==1 && /^worktree /{print $2}')
+  [ -z "$root" ] && { echo "Not a git repo"; return 1; }
+  git worktree add "$root/.worktrees/$1" -b "$1" ${2:+"$2"} || return
+  cd "$root/.worktrees/$1"
+}
+
+# gwtl - list worktrees
+gwtl() { git worktree list; }
+
+# gwtrm [-f] <name> - remove worktree .worktrees/<name> and delete its branch
+gwtrm() {
+  local force name arg
+  for arg in "$@"; do [ "$arg" = "-f" ] && force=1 || name="$arg"; done
+  [ -z "$name" ] && { echo "Usage: gwtrm [-f] <name>"; return 1; }
+  local root; root=$(git worktree list --porcelain 2>/dev/null | awk 'NR==1 && /^worktree /{print $2}')
+  [ -z "$root" ] && { echo "Not a git repo"; return 1; }
+  local wt="$root/.worktrees/$name"
+  case "$PWD" in "$wt"*) cd "$root" ;; esac
+  # merge check is against HEAD only; git branch -d also checks upstream, so this can over-refuse (use -f)
+  if [ -z "$force" ] && ! git merge-base --is-ancestor "$name" HEAD 2>/dev/null; then
+    echo "gwtrm: branch '$name' is not fully merged; use 'gwtrm -f $name' to force"
+    return 1
+  fi
+  git worktree remove ${force:+-f} "$wt" 2>/dev/null || [ ! -d "$wt" ] || return
+  if [ -n "$force" ]; then git branch -D "$name"; else git branch -d "$name"; fi
+}
+
+# Git upstream branch syncer
+# Usage: gsync master (checks out master, pull upstream, push origin)
+gsync() {
+ if [ -z "$1" ]; then
+     echo "You must supply a branch."
+     return 0
+ fi
+ BRANCHES=$(git branch --list $1)
+ if [ ! "$BRANCHES" ] ; then
+    echo "Branch $1 does not exist."
+    return 0
+ fi
+ git checkout "$1" && \
+ git pull upstream "$1" && \
+ git push origin "$1"
+}
+
 # Safety nets
 alias rm='rm -i'
 alias cp='cp -i'

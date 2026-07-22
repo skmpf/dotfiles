@@ -56,23 +56,6 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Load aliases
 [[ -f $HOME/.aliases ]] && source $HOME/.aliases
 
-# Git upstream branch syncer
-# Usage: gsync master (checks out master, pull upstream, push origin)
-gsync() {
- if [[ ! "$1" ]] ; then
-     echo "You must supply a branch."
-     return 0
- fi
- BRANCHES=$(git branch --list $1)
- if [ ! "$BRANCHES" ] ; then
-    echo "Branch $1 does not exist."
-    return 0
- fi
- git checkout "$1" && \
- git pull upstream "$1" && \
- git push origin "$1"
-}
-
 # Homebrew auto-update (macOS only)
 if [[ "$IS_MAC" == true ]]; then
   export HOMEBREW_AUTO_UPDATE_SECS=604800
