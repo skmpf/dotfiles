@@ -56,6 +56,13 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Load aliases
 [[ -f $HOME/.aliases ]] && source $HOME/.aliases
 
+# eza: enhance ls when available, else fall back to system ls
+if command -v eza >/dev/null 2>&1; then
+  alias ls='eza --group-directories-first --icons'
+  alias ll='ls -la --git'
+  alias lt='ls --tree --level=2'
+fi
+
 # Homebrew auto-update (macOS only)
 if [[ "$IS_MAC" == true ]]; then
   export HOMEBREW_AUTO_UPDATE_SECS=604800

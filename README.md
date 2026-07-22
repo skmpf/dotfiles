@@ -53,6 +53,16 @@ My `.zshrc` file is usable as is but to use its full potential you will need to 
 
 Nerd Fonts are a collection of fonts that include icons and symbols for programming languages, file types, and other common characters: https://www.nerdfonts.com/
 
+### eza
+
+eza is a modern replacement for `ls` that provides icons and git status. When installed, the `ls` aliases use it automatically; otherwise they fall back to the system `ls`.
+
+```bash
+brew install eza
+<!-- or -->
+sudo apt install eza
+```
+
 ### Oh My Posh
 
 Oh My Posh is a collection of themes and plugins for any terminal: https://ohmyposh.dev/

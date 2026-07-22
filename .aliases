@@ -4,11 +4,9 @@ export EDITOR=vim
 # ===== ESSENTIAL ALIASES =====
 
 # Navigation
-alias ls='eza --group-directories-first --icons'
 alias l='ls -l'
-alias ll='ls -la --git'
+alias ll='ls -la'
 alias la='ls -a'
-alias lt='ls --tree --level=2'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
