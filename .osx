@@ -239,6 +239,9 @@ defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool fa
 # Hide desktop icons
 defaults write com.apple.WindowManager StandardHideDesktopIcons -bool true
 
+# Remove all widgets from the desktop and Notification Center
+defaults delete com.apple.notificationcenterui widgets 2>/dev/null || true
+
 ###############################################################################
 # Safari & WebKit                                                             #
 ###############################################################################
@@ -276,8 +279,16 @@ if [[ "$RUN_AS_ROOT" = true ]]; then
   killall mds > /dev/null 2>&1
 fi
 
-# Disable Spotlight keyboard shortcut (Command+Space):
-defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 '<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>1048576</integer></array><key>type</key><string>standard</string></dict></dict>'
+# Set Spotlight keyboard shortcut to Option+Space (key 64: keycode 49 + Option modifier 524288)
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 '<dict><key>enabled</key><true/><key>value</key><dict><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>524288</integer></array><key>type</key><string>standard</string></dict></dict>'
+
+# Turn off "Help Apple Improve Spotlight" (stops sharing search queries with Apple)
+defaults write com.apple.assistant.support "Search Queries Data Sharing Status" -int 2
+
+# Keep ~/Projects out of Spotlight's index (native marker file; the per-volume
+# Exclusions plist is SIP-locked and not writable on Sequoia)
+[[ -d "$HOME/Projects" ]] && touch "$HOME/Projects/.metadata_never_index"
+
 # Set Raycast as the global hotkey (Command+49):
 defaults write com.raycast.macos raycastGlobalHotkey -string "Command-49"
 defaults write com.raycast.macos raycastPreferredWindowMode -string "default"
@@ -325,7 +336,7 @@ defaults write com.apple.TimeMachine "DoNotOfferNewDisksForBackup" -bool "true"
 
 # Restart affected applications if `--no-restart` flag is not present.
 if [[ ! ($* == *--no-restart*) ]]; then
-  for app in "cfprefsd" "Dock" "Finder" "Mail" "SystemUIServer" "Terminal"; do
+  for app in "cfprefsd" "NotificationCenter" "Dock" "Finder" "Mail" "SystemUIServer" "Terminal"; do
     killall "${app}" > /dev/null 2>&1
   done
 fi
