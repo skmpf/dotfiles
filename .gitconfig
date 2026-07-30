@@ -6,9 +6,6 @@
 	path = ~/.gitconfig_work
 [alias]
 	l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	ri = rebase -i
-	ricode = !GIT_EDITOR='code --wait' git rebase -i
-	riabort = rebase --abort
 [branch]
 	sort = -committerdate
 [column]
