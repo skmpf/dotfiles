@@ -1,0 +1,9 @@
+# Auto-install Ghostty terminfo on remote hosts over SSH (cached per host),
+# and keep xterm-ghostty with full features. Fixes the
+# "tput: unknown terminal xterm-ghostty" + doubled-input issue on remotes.
+# Requires Ghostty shell integration (on by default for zsh). Works on 1.2.0+.
+shell-integration-features = ssh-env,ssh-terminfo
+
+# Treat Option as Alt/Meta so opt+backspace / opt+left / opt+f etc.
+# send the escape sequences pi (and other TUIs) bind to alt+...
+macos-option-as-alt = true
