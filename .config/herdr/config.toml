@@ -1,0 +1,8 @@
+# Herdr config — https://herdr.dev/docs/config-reference/
+# Only agent-navigation overrides; everything else uses Herdr defaults.
+# Reload after editing: `herdr server reload-config`
+
+[keys]
+next_agent     = "prefix+alt+n"
+previous_agent = "prefix+alt+p"
+focus_agent    = "prefix+alt+1..9"

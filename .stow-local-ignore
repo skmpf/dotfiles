@@ -1,6 +1,7 @@
 .git
 ^README\.md$
 LICENCE
+^bin$
 
 .DS_Store
 ^\.env$

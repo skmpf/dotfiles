@@ -98,5 +98,3 @@ export PATH="$JAVA_HOME/bin:$PATH"
 
 test -e "$HOME/.shellfishrc" && source "$HOME/.shellfishrc"
 
-# Added by LM Studio CLI tool (lms)
-export PATH="$PATH:$HOME/.lmstudio/bin"
