@@ -6,5 +6,6 @@
 
 # agents
 .pi-subagents/
+.pi/subagents/
 .scratch/
 
