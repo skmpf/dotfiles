@@ -7,7 +7,22 @@ onboarding = false
 name = "dracula"
 auto_switch = false
 
+[ui.sound]
+done_path = "sounds/frog.mp3"
+
 [keys]
 next_agent     = "prefix+alt+n"
 previous_agent = "prefix+alt+p"
 focus_agent    = "prefix+alt+1..9"
+
+[ui]
+status_indicators = "dots"
+
+# Default pi sidebar rows + the $quota token ("⏳ 14:05") on the agent line
+# while a quota-wait is armed; disappears when idle — layout is otherwise
+# identical to the default.
+[ui.sidebar.agents.rows_by_agent]
+pi = [
+  ["state_icon", "machine", "workspace", "tab"],
+  ["agent", "$quota"],
+]
