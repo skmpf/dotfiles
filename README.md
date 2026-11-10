@@ -106,14 +106,14 @@ source ~/.zshrc
 User scripts live in `bin/`, which `.zshrc` adds to `$PATH` as
 `$HOME/.dotfiles/bin`. They are available as soon as the repo is cloned.
 
-### nf (Telegram notifications)
+### nf (Matrix notifications)
 
-`nf <message>` sends a message to a Telegram chat via the Bot API. It needs
-Telegram Bot credentials:
+`nf <message>` sends a message to a Matrix room. It needs:
 
-- `TELEGRAM_BOT_TOKEN`
-- `TELEGRAM_CHAT_ID`
-- `TELEGRAM_THREAD_ID` (optional, for forum topics)
+- `MATRIX_HOMESERVER_URL` (e.g. `https://matrix.org`)
+- `MATRIX_ACCESS_TOKEN`
+- `MATRIX_ROOM_ID` (e.g. `!abc123:matrix.org`)
+- `MATRIX_THREAD_ID` (optional, thread root event ID — sends inside that thread)
 
 Copy the template and fill in your values (`.env` is gitignored;
 `.example.env` is the committed template):
@@ -123,6 +123,7 @@ cp .example.env .env
 $EDITOR .env
 ```
 
-`nf` reads `.env` from this repo regardless of the current directory. A
+`nf` reads `.env` from this repo regardless of the current directory. It needs
+`curl` and `jq` on your `PATH`. A
 `$PWD/.env`, `<git-root>/.env`, or pre-set environment variable takes precedence
 if present. With no message or no credentials it exits silently.
